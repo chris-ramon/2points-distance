@@ -17,7 +17,7 @@
         div: '#map',
         lat: -12.043333,
         lng: -77.028333,
-        zoom: 12
+        zoom: 15
       });
       $("#route").on("click", function(){
       	origin = $("#origin").val().split(',');
@@ -27,6 +27,10 @@
       	destination = $("#destination").val().split(',');
       	d_lat = parseFloat(destination[0]);
       	d_lon = parseFloat(destination[1]);
+
+        // set google map view to origin
+        lat_lon = new google.maps.LatLng(o_lat,o_lon);
+        map.panTo(lat_lon);
 
 	      map.drawRoute({
 				  origin: [o_lat, o_lon],
