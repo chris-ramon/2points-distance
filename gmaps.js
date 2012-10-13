@@ -884,9 +884,12 @@ if(window.google && window.google.maps){
         var service = new google.maps.DirectionsService();
 
         service.route(request_options, function(result, status) {
-          // json result  
+          // json result 
+          console.log(result); 
           var distance = result.routes[0].legs[0].distance.text;
+          var duration = result.routes[0].legs[0].duration.text;
           $("#km").text("Distance: " + distance);
+          $("#duration").text("Duration: " + duration);
           if (status === google.maps.DirectionsStatus.OK) {
             for (var r in result.routes) {
               if (result.routes.hasOwnProperty(r)) {
