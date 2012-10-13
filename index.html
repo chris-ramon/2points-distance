@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
+    <script type="text/javascript" src="/gmaps.js"></script>
+</head>
+  <script type="text/javascript">
+    var map;
+    var route;
+    $(document).ready(function(){
+      map = new GMaps({
+        div: '#map',
+        lat: -12.043333,
+        lng: -77.028333,
+        zoom: 12
+      });
+      $("#route").on("click", function(){
+      	origin = $("#origin").val().split(',');
+      	o_lat = parseFloat(origin[0]);
+      	o_lon = parseFloat(origin[1]);
+
+      	destination = $("#destination").val().split(',');
+      	d_lat = parseFloat(destination[0]);
+      	d_lon = parseFloat(destination[1]);
+
+	      map.drawRoute({
+				  origin: [o_lat, o_lon],
+				  destination: [d_lat, d_lon],
+				  travelMode: 'driving',
+				  strokeColor: '#131540',
+				  strokeOpacity: 0.6,
+				  strokeWeight: 6
+				});
+      	return false;
+      });
+
+    });
+  </script>
+<body>
+	<div class="container-fluid">
+		<div class="row-fluid">
+				<div class="span6">
+					<div id="map"></div>			
+				</div>
+				<div class="span6 well">
+					<h5 id="km"></h5>
+					<label for="origin">Origin</label>
+					<input id="origin" type="text" value="-12.044012922866312, -77.02470665341184" class="input-xxlarge">
+					<label for="destination">Destination</label>
+					<input id="destination" type="text" value="-12.090814532191756, -77.02271108990476" class="input-xxlarge">
+					<br><input id="route" type="submit" value="Route" class="btn btn-info">
+				</div>
+		</div>	
+	</div>
+</body>
+</html>

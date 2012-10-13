@@ -1,0 +1,10 @@
+body{
+	margin-top: 20px;
+}
+#map img {
+    max-width: none;     /*fix zoom in out twitter bootstrap + google maps*/
+}
+#map {
+	height: 600px;
+	width: 600px;
+}
